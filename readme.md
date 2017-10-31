@@ -50,7 +50,7 @@ const Bar = ({close}) => (
 <div className='main-content'>
   <Dialogs components={{Foo, Bar}} />
   <Header />
-  <Route path='foo' component={Foo} />
+  <Route path='some-page' component={SomePage} />
   <Footer />
 </div>
 ```
