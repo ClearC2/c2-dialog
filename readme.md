@@ -14,11 +14,11 @@ Next, add the reducer to your app reducer:
 
 ```js
 import {combineReducers} from 'redux-immutable'
-import {reducer as dialogReduer} from 'c2-dialog'
+import {reducer as dialogReducer} from 'c2-dialog'
 
 const reducer = combineReducers({
   // other reducers
-  [dialogReduer.key]: dialogReduer
+  [dialogReducer.key]: dialogReducer
 })
 ```
 
