@@ -1,6 +1,6 @@
 {
   "name": "c2-dialog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a react/redux dialog component",
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "prop-types": "^15.0.0",
+    "react-portal": "^4.1.2",
     "react-rnd": "^7.1.5"
   }
 }

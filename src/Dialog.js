@@ -1,19 +1,38 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Rnd from 'react-rnd'
 
 let zIndex = 2000
 
 export default class Dialog extends Component {
+  static propTypes = {
+    default: PropTypes.object,
+    center: PropTypes.bool
+  }
+
+  static defaultProps = {
+    default: {},
+    center: true
+  }
+
   componentDidMount () {
     this.updateZIndex()
   }
+
   updateZIndex = () => {
     this.rnd.updateZIndex(++zIndex)
   }
+
   render () {
+    const {center} = this.props
+    const width = this.props.default.width
+    const x = center && width ? (window.innerWidth / 2) - (width / 2) : x
+
+    const defaultProps = {...this.props.default, x}
     return (
       <Rnd
         {...this.props}
+        default={defaultProps}
         ref={rnd => { this.rnd = rnd }}
         onDrag={function () {
           this.updateZIndex()

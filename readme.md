@@ -10,151 +10,88 @@ Install C2 Dialog by adding the following to your package.json file:
 "c2-dialog": "git+ssh://git@github.com:ClearC2/c2-dialog.git",
 ```
 
-Next, add the reducer to your app reducer:
+Now you can import and start using modals and dialogs.
 
-```js
-import {combineReducers} from 'redux-immutable'
-import {reducer as dialogReducer} from 'c2-dialog'
+### Modal
+Modals get rendered at the end of the `body` tag via `react-portal`. A backdrop will be rendered that will restrict clicking on anywhere but the modal.
 
-const reducer = combineReducers({
-  // other reducers
-  [dialogReducer.key]: dialogReducer
-})
+```
+import {Modal} from 'c2-dialog'
+
+// in render...
+
+<button onClick={() => this.setState({modal: true})}>Open Modal</button>
+{this.state.modal && (
+  <Modal
+    center
+    enableResizing={false}
+    disableDragging={true}
+    style={{
+      background: '#fff',
+      boxShadow: '0px 0px 15px #444',
+      borderRadius: '5px',
+      padding: 10
+    }}
+    default={{
+      y: 100,
+      width: 200,
+      height: 200
+    }}>
+    <button className='close' onClick={() => this.setState({modal: false})}>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <br />
+    <h2>{`I'm a modal`}</h2>
+  </Modal>
+)}
+
 ```
 
-## Usage
+### Dialog
+Dialogs do not have a backdrop making it useful for having multiple rendered at once. The dialogs are rendered in place and will be positioned relative to their containing markup.
 
-Use the `<Dialogs />` tag to indicate where the dialog markup should be rendered and pass in a component map. The `<Dialogs />` component is connected to the state and renders dialogs stored in the state.
-
-```jsx
-const Foo = ({close, value}) => (
-  <div>
-    <div className='text-right pointer'>
-      <button onClick={close} className='close'>×</button>
-    </div>
-    <h2>{value}</h2>
-  </div>
-)
-
-const Bar = ({close}) => (
-  <div>
-    <div className='text-right pointer'>
-      <button onClick={close} className='close'>×</button>
-    </div>
-    <h2>Bar Component</h2>
-  </div>
-)
-
-// in render function
-
-<div className='main-content'>
-  <Dialogs components={{Foo, Bar}} />
-  <Header />
-  <Route path='some-page' component={SomePage} />
-  <Footer />
-</div>
 ```
-Components used in dialogs will automatically be passed a `close()` function to close the dialog. You can also import `closeDialog` to close a dialog by id:
+import {Dialog} from 'c2-dialog'
 
-```jsx
-import {closeDialog} from 'c2-dialog'
+// in render...
 
-// ...
-
-<button
-  className='btn'
-  onClose={() => this.props.closeDialog('TestDialog')}
->
-  Close Test Dialog
-</button>
+<button onClick={() => this.setState({dialog: true})}>Open Dialog</button>
+{this.state.dialog && (
+  <Dialog
+    center
+    style={{
+      background: '#fff',
+      boxShadow: '0px 0px 15px #444',
+      borderRadius: '5px',
+      padding: 10
+    }}
+    default={{
+      y: 100,
+      width: 200,
+      height: 200
+    }}>
+    <button className='close' onClick={() => this.setState({dialog: false})}>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <br />
+    <h2>{`I'm a dialog`}</h2>
+  </Dialog>
+)}
 ```
 
-### `openDialog()`
+If you need finer control over where exactly the dialogs get rendered, use `react-portal`.
 
-To open a dialog, dispatch the `openDialog()` action.
+```
+import {Portal} from 'react-portal'
+import {Dialog} from 'c2-dialog'
 
-```jsx
-import {openDialog} from 'c2-dialog'
+// in render...
 
-// ...
-
-<button
-  className='btn'
-  onClick={() => {
-    const dialogId = (new Date()).getTime()
-    this.props.openDialog(dialogId, 'Foo', {value: 'testing!'})
-  }}
->
-  Open Foo Dialog
-</button>
-
-<button
-  className='btn'
-  onClick={() => {
-    const dialogId = (new Date()).getTime()
-    this.props.openDialog(dialogId, 'Bar')
-  }}
->
-  Open Bar Dialog
-</button>
+<Portal node={document.getElementById('leaflet-map')}>
+  <Dialog {...dialogProps}>
+    {content}
+  </Dialog>
+</Portal>
 ```
 
-The `openDialog()` action takes 4 arguments:
-
-- The dialog id (required)
-- The component name to render within the dialog (required)
-- The props to pass to the component rendered within the dialog (optional)
-- A channel name (explained below) (optional)
-
-### `<Dialogs />`
-
-The `<Dialogs />` component passes all props to the underlying `<Rnd />` component. You can read the [react-rnd documentation](https://github.com/bokuweb/react-rnd) to see what all is available.
-
-There are 2 props that are unique to the `<Dialogs />` component and have nothing to do with `<Rnd />`:
-- `components` - The object containing the name[componentClass] mapping
-- `channel` - This is a string used to identify select dialogs to render through a specific `<Dialogs />` component.
-
-See the following example:
-
-```jsx
-const Map = ({openDialog}) => (
-    <div>
-      <LeafletMap />
-      <button
-        className='btn'
-        onClick={() => {
-          openDialog('MapDialog', 'LocationDialog', {locationId: 45}, 'map')
-        }}>
-        Open Location
-      </button>
-      <Portal node={document.getElementById('leaflet-map')}>
-        <Dialogs
-          components={{LocationDialog}}
-          channel='map'
-          style={{
-            border: '1px solid #555',
-            background: '#fff',
-            boxShadow: '0px 0px 15px #444',
-            borderRadius: '5px'
-          }}
-          default={{
-            x: (window.innerWidth / 2) - (600 / 2),
-            y: 0,
-            width: 600,
-            height: 300
-          }}
-        />
-      </Portal>
-    </div>
-)
-
-// elsewhere in render()
-<div className='main-content'>
-  <Dialogs components={{Foo, Bar}} />
-  <Header />
-  <Route path='map' component={Map} />
-  <Footer />
-</div>
-```
-
-There are 2 `<Dialogs />` components being used in the above example. All `openDialog()` calls without a channel will be rendered in the instance above the header. The `<Map />` uses `react-portal` to render the "map" dialogs inside a specific div created by leaflet. These dialogs will all be styled with a gray border, white background, gray box shadow, etc. They will be 600px x 300px and centered initially.
+The components will horizontally align itself if the `center` prop is passed and there is a `width` found in the `default` prop.
