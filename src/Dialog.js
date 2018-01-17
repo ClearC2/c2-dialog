@@ -12,7 +12,7 @@ export default class Dialog extends Component {
 
   static defaultProps = {
     default: {},
-    center: true
+    center: false
   }
 
   componentDidMount () {
