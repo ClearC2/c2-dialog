@@ -1,6 +1,6 @@
 {
   "name": "c2-dialog",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "a react/redux dialog component",
   "repository": {
     "type": "git",

@@ -26,7 +26,7 @@ export default class Dialog extends Component {
   render () {
     const {center} = this.props
     const width = this.props.default.width
-    const x = center && width ? (window.innerWidth / 2) - (width / 2) : x
+    const x = center && width ? (window.innerWidth / 2) - (width / 2) : this.props.default.x
 
     const defaultProps = {...this.props.default, x}
     return (
