@@ -48,7 +48,7 @@ import {Modal} from 'c2-dialog'
 ```
 
 ### Dialog
-Dialogs do not have a backdrop making it useful for having multiple rendered at once. The dialogs are rendered in place and will be positioned relative to their containing markup.
+Dialogs do not have a backdrop making it useful for having multiple rendered at once.
 
 ```
 import {Dialog} from 'c2-dialog'
@@ -95,3 +95,16 @@ import {Dialog} from 'c2-dialog'
 ```
 
 The components will horizontally align itself if the `center` prop is passed and there is a `width` found in the `default` prop.
+
+## Props
+#### `center?: bool`
+The dialog will be centered initially and be responsive based on window resizes. Default: `false`.
+
+#### `inline?: bool`
+The dialog uses `react-portal` to render the markup at the end of the `body`. Set this prop to true to disable `react-portal` and render in place. Default: `false`.
+
+#### `node?: element`
+The is the node `react-portal` will use to render the markup in. Default: `null` will be rendered in the `body`.
+
+#### `backdropStyle?: object`
+Use this to tweak the backdrop. The only difference between a `<Modal>`and a `<Dialog>` is the `backdropStyle`.

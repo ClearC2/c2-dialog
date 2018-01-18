@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Dialogs, dialogs, openDialog, Modal, Dialog} from '../../src/index'
+import {Portal} from 'react-portal'
 
 const Foo = ({close, value}) => (
   <div>

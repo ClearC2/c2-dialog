@@ -23,13 +23,8 @@ export default class Modal extends Component {
     }
   }
   render () {
-    const {backdropStyle, ...props} = this.props
     return (
-      <Portal>
-        <div style={backdropStyle}>
-          <Dialog {...props} />
-        </div>
-      </Portal>
+      <Dialog {...this.props} />
     )
   }
 }
