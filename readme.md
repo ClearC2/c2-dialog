@@ -13,7 +13,7 @@ Install C2 Dialog by adding the following to your package.json file:
 Now you can import and start using modals and dialogs.
 
 ### Modal
-Modals get rendered at the end of the `body` tag via `react-portal`. A backdrop will be rendered that will restrict clicking on anywhere but the modal.
+A backdrop will be rendered that will restrict clicking on anywhere but the modal.
 
 ```
 import {Modal} from 'c2-dialog'
@@ -77,21 +77,6 @@ import {Dialog} from 'c2-dialog'
     <h2>{`I'm a dialog`}</h2>
   </Dialog>
 )}
-```
-
-If you need finer control over where exactly the dialogs get rendered, use `react-portal`.
-
-```
-import {Portal} from 'react-portal'
-import {Dialog} from 'c2-dialog'
-
-// in render...
-
-<Portal node={document.getElementById('leaflet-map')}>
-  <Dialog {...dialogProps}>
-    {content}
-  </Dialog>
-</Portal>
 ```
 
 The components will horizontally align itself if the `center` prop is passed and there is a `width` found in the `default` prop.
