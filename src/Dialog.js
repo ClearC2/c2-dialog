@@ -5,6 +5,7 @@ import {Portal} from 'react-portal'
 import $ from 'jquery'
 
 let zIndex = 2000
+const backdropZIndex = 1999
 
 export default class Dialog extends Component {
   static propTypes = {
@@ -71,7 +72,7 @@ export default class Dialog extends Component {
           this.setState({dragged: true})
           if (this.props.onDragStop) this.props.onDragStop(...arguments)
         }.bind(this)}
-        onResizeStop={function (a, b , c, delta) {
+        onResizeStop={function (a, b, c, delta) {
           this.updateZIndex()
           const width = this.state.width + delta.width
           this.setState({width})
@@ -89,7 +90,7 @@ export default class Dialog extends Component {
     const defaultProps = {...this.props.default, x}
     const rnd = this.renderRnd(defaultProps)
     if (this.props.inline) return rnd
-    const backdropStyle = {position: 'fixed', top: 0, ...this.props.backdropStyle}
+    const backdropStyle = {position: 'fixed', top: 0, zIndex: backdropZIndex, ...this.props.backdropStyle}
     return (
       <Portal node={this.props.node}>
         <div style={backdropStyle}>
