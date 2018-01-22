@@ -5,7 +5,10 @@ import {Portal} from 'react-portal'
 import $ from 'jquery'
 
 let zIndex = 2000
-const backdropZIndex = 1999
+let portalNode = null
+export function setPortalNode (node) {
+  portalNode = node
+}
 
 export default class Dialog extends Component {
   static propTypes = {
@@ -19,7 +22,7 @@ export default class Dialog extends Component {
   static defaultProps = {
     default: {},
     center: false,
-    backdropStyle: {},
+    backdropStyle: null,
     inline: false,
     node: null
   }
@@ -33,13 +36,13 @@ export default class Dialog extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount () {
     this.updateZIndex()
     $(window).resize(this.onResize)
   }
 
-  componentWillUnmount = () => {
-    $(window).off("resize", this.onResize);
+  componentWillUnmount () {
+    $(window).off('resize', this.onResize)
   }
 
   onResize = () => this.center()
@@ -90,12 +93,14 @@ export default class Dialog extends Component {
     const defaultProps = {...this.props.default, x}
     const rnd = this.renderRnd(defaultProps)
     if (this.props.inline) return rnd
-    const backdropStyle = {position: 'fixed', top: 0, zIndex: backdropZIndex, ...this.props.backdropStyle}
+
     return (
-      <Portal node={this.props.node}>
-        <div style={backdropStyle}>
-          {rnd}
-        </div>
+      <Portal node={this.props.node || portalNode}>
+        {this.props.backdropStyle ? (
+          <div style={this.props.backdropStyle}>
+            {rnd}
+          </div>
+        ) : rnd}
       </Portal>
     )
   }

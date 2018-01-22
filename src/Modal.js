@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Portal} from 'react-portal'
 import Dialog from './Dialog'
 
 export default class Modal extends Component {
