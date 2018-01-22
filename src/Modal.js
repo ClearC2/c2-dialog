@@ -6,9 +6,8 @@ export default class Modal extends Component {
   static propTypes = {
     backdropStyle: PropTypes.object
   }
-
-  static defaultProps = {
-    backdropStyle: {
+  render () {
+    const bStyle = {
       position: 'fixed',
       top: 0,
       right: 0,
@@ -18,12 +17,11 @@ export default class Modal extends Component {
       overflowX: 'hidden',
       overflowY: 'auto',
       outline: 0,
-      zIndex: 2000000
+      zIndex: 2000000,
+      ...(this.props.backdropStyle || {})
     }
-  }
-  render () {
     return (
-      <Dialog {...this.props} />
+      <Dialog {...this.props} backdropStyle={bStyle} />
     )
   }
 }
