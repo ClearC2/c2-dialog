@@ -48,6 +48,7 @@ export default class Example extends Component {
             key={id}
             nodee={document.getElementById('dialogs')}
             center
+            className='foobar'
             style={{
               background: '#fff',
               boxShadow: '0px 0px 15px #444',
