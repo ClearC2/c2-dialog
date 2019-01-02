@@ -1,12 +1,13 @@
 {
   "name": "c2-dialog",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "a react/redux dialog component",
   "repository": {
     "type": "git",
     "url": "https://github.com/ClearC2/c2-dialog"
   },
   "main": "lib/index.js",
+  "module": "lib/index.js",
   "scripts": {
     "start": "cd example && webpack-dev-server --inline --content-base dist --history-api-fallback --port 8087",
     "compile": "babel -d lib/ src/",
