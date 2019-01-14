@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import Rnd from 'react-rnd'
+import {Rnd} from 'react-rnd'
 import {Portal} from 'react-portal'
 import $ from 'jquery'
 
@@ -32,7 +32,8 @@ export default class Dialog extends Component {
     const defaultProps = props.default || {}
     this.state = {
       ...defaultProps,
-      dragged: false
+      dragged: false,
+      zIndex
     }
   }
 
@@ -56,13 +57,24 @@ export default class Dialog extends Component {
   }
 
   updateZIndex = () => {
-    this.rnd.updateZIndex(++zIndex)
+    ++zIndex
+    this.setState({
+      zIndex
+    })
   }
 
   renderRnd = (defaultProps) => {
+    const {
+      inline,
+      center,
+      backdropStyle,
+      style = {},
+      ...props
+    } = this.props
     return (
       <Rnd
-        {...this.props}
+        {...props}
+        style={{...style, zIndex: this.state.zIndex}}
         default={defaultProps}
         ref={rnd => { this.rnd = rnd }}
         onDrag={function () {

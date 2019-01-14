@@ -57,6 +57,6 @@
     "jquery": "^3.2.1",
     "prop-types": "^15.0.0",
     "react-portal": "^4.1.2",
-    "react-rnd": "^7.1.5"
+    "react-rnd": "^9.0.0"
   }
 }
