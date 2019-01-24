@@ -122,3 +122,6 @@ The is the node `react-portal` will use to render the markup in. Default: Elemen
 
 #### `backdropStyle?: object`
 Use this to tweak the backdrop. The only difference between a `<Modal>`and a `<Dialog>` is the `backdropStyle`.
+
+#### `getRnd?: func`
+Passes the underlying rnd ref as the only argument.

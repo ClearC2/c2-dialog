@@ -6,6 +6,7 @@ import $ from 'jquery'
 
 let zIndex = 2000
 let portalNode = null
+
 export function setPortalNode (node) {
   portalNode = node
 }
@@ -16,7 +17,8 @@ export default class Dialog extends Component {
     center: PropTypes.bool,
     inline: PropTypes.bool,
     backdropStyle: PropTypes.object,
-    node: PropTypes.object
+    node: PropTypes.object,
+    getRnd: PropTypes.func
   }
 
   static defaultProps = {
@@ -24,7 +26,9 @@ export default class Dialog extends Component {
     center: false,
     backdropStyle: null,
     inline: false,
-    node: null
+    node: null,
+    style: {},
+    getRnd: () => {}
   }
 
   constructor (props) {
@@ -68,7 +72,8 @@ export default class Dialog extends Component {
       inline,
       center,
       backdropStyle,
-      style = {},
+      style,
+      getRnd,
       ...props
     } = this.props
     return (
@@ -76,7 +81,10 @@ export default class Dialog extends Component {
         {...props}
         style={{...style, zIndex: this.state.zIndex}}
         default={defaultProps}
-        ref={rnd => { this.rnd = rnd }}
+        ref={rnd => {
+          this.rnd = rnd
+          if (rnd) getRnd(rnd)
+        }}
         onDrag={function () {
           this.updateZIndex()
           this.setState({dragged: true})
