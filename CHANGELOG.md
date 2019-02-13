@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/ClearC2/c2-dialog/compare/v2.1.0...v2.1.1) (2019-02-13)
+
+
+### Bug Fixes
+
+* **build:** add cjs build ([1347305](https://github.com/ClearC2/c2-dialog/commit/1347305))
+
 # [2.1.0](https://github.com/ClearC2/c2-dialog/compare/v2.0.0...v2.1.0) (2019-01-24)
 
 
