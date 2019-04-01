@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/ClearC2/c2-dialog/compare/v2.1.1...v2.1.2) (2019-04-01)
+
+
+### Bug Fixes
+
+* **deps:** move dev deps to actual dev deps ([#5](https://github.com/ClearC2/c2-dialog/issues/5)) ([6b06cc7](https://github.com/ClearC2/c2-dialog/commit/6b06cc7))
+
 ## [2.1.1](https://github.com/ClearC2/c2-dialog/compare/v2.1.0...v2.1.1) (2019-02-13)
 
 
