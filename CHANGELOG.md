@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/ClearC2/c2-dialog/compare/v2.1.2...v2.2.0) (2019-11-21)
+
+
+### Features
+
+* **react-rnd:** upgrades react-rnd to 10.1.1 that no longer uses depricated react lifecycles ([a19895d](https://github.com/ClearC2/c2-dialog/commit/a19895d))
+
 ## [2.1.2](https://github.com/ClearC2/c2-dialog/compare/v2.1.1...v2.1.2) (2019-04-01)
 
 
