@@ -18,7 +18,8 @@ export default class Dialog extends Component {
     inline: PropTypes.bool,
     backdropStyle: PropTypes.object,
     node: PropTypes.object,
-    getRnd: PropTypes.func
+    getRnd: PropTypes.func,
+    zIndex: PropTypes.number
   }
 
   static defaultProps = {
@@ -79,7 +80,7 @@ export default class Dialog extends Component {
     return (
       <Rnd
         {...props}
-        style={{...style, zIndex: this.state.zIndex}}
+        style={{...style, zIndex: this.props.zIndex || this.state.zIndex}}
         default={defaultProps}
         ref={rnd => {
           this.rnd = rnd
