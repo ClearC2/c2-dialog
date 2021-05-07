@@ -75,12 +75,15 @@ export default class Dialog extends Component {
       backdropStyle,
       style,
       getRnd,
+      zIndex,
       ...props
     } = this.props
+    if (zIndex) style.zIndex = zIndex
+    else style.zIndex = this.state.zIndex
     return (
       <Rnd
         {...props}
-        style={{...style, zIndex: this.props.zIndex || this.state.zIndex}}
+        style={style}
         default={defaultProps}
         ref={rnd => {
           this.rnd = rnd
