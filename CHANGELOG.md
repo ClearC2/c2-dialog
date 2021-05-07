@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/ClearC2/c2-dialog/compare/v2.3.0...v2.3.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* **zindex:** pulls zindex out of the props so rnd does not apply it to a div and cause a react error ([316ff21](https://github.com/ClearC2/c2-dialog/commit/316ff21))
+
 # [2.3.0](https://github.com/ClearC2/c2-dialog/compare/v2.2.0...v2.3.0) (2021-03-05)
 
 
