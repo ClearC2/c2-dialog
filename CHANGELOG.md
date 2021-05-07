@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/ClearC2/c2-dialog/compare/v2.3.1...v2.3.2) (2021-05-07)
+
+
+### Bug Fixes
+
+* build ([3227a30](https://github.com/ClearC2/c2-dialog/commit/3227a30))
+
 ## [2.3.1](https://github.com/ClearC2/c2-dialog/compare/v2.3.0...v2.3.1) (2021-05-07)
 
 

@@ -1,8 +1,8 @@
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -18,11 +18,11 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -49,11 +49,11 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Dialog).call(this, _props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onResize", function () {
+    _defineProperty(_assertThisInitialized(_this), "onResize", function () {
       return _this.center();
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "center", function (width) {
+    _defineProperty(_assertThisInitialized(_this), "center", function (width) {
       if (_this.props.center && !_this.state.dragged) {
         width = width || _this.state.width;
         var x = window.innerWidth / 2 - width / 2;
@@ -64,7 +64,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateZIndex", function () {
+    _defineProperty(_assertThisInitialized(_this), "updateZIndex", function () {
       ++zIndex;
 
       _this.setState({
@@ -72,19 +72,19 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderRnd", function (defaultProps) {
+    _defineProperty(_assertThisInitialized(_this), "renderRnd", function (defaultProps) {
       var _this$props = _this.props,
           inline = _this$props.inline,
           center = _this$props.center,
           backdropStyle = _this$props.backdropStyle,
           style = _this$props.style,
           getRnd = _this$props.getRnd,
-          props = _objectWithoutProperties(_this$props, ["inline", "center", "backdropStyle", "style", "getRnd"]);
+          zIndex = _this$props.zIndex,
+          props = _objectWithoutProperties(_this$props, ["inline", "center", "backdropStyle", "style", "getRnd", "zIndex"]);
 
+      if (zIndex) style.zIndex = zIndex;else style.zIndex = _this.state.zIndex;
       return React.createElement(Rnd, _extends({}, props, {
-        style: _objectSpread({}, style, {
-          zIndex: _this.state.zIndex
-        }),
+        style: style,
         default: defaultProps,
         ref: function ref(rnd) {
           _this.rnd = rnd;
@@ -98,7 +98,7 @@ function (_Component) {
             dragged: true
           });
           if (this.props.onDrag) (_this$props2 = this.props).onDrag.apply(_this$props2, arguments);
-        }.bind(_assertThisInitialized(_assertThisInitialized(_this))),
+        }.bind(_assertThisInitialized(_this)),
         onDragStop: function () {
           var _this$props3;
 
@@ -107,7 +107,7 @@ function (_Component) {
             dragged: true
           });
           if (this.props.onDragStop) (_this$props3 = this.props).onDragStop.apply(_this$props3, arguments);
-        }.bind(_assertThisInitialized(_assertThisInitialized(_this))),
+        }.bind(_assertThisInitialized(_this)),
         onResizeStop: function (a, b, c, delta) {
           var _this$props4;
 
@@ -118,7 +118,7 @@ function (_Component) {
           });
           this.center(width);
           if (this.props.onResizeStop) (_this$props4 = this.props).onResizeStop.apply(_this$props4, arguments);
-        }.bind(_assertThisInitialized(_assertThisInitialized(_this)))
+        }.bind(_assertThisInitialized(_this))
       }));
     });
 
@@ -172,7 +172,8 @@ _defineProperty(Dialog, "propTypes", {
   inline: PropTypes.bool,
   backdropStyle: PropTypes.object,
   node: PropTypes.object,
-  getRnd: PropTypes.func
+  getRnd: PropTypes.func,
+  zIndex: PropTypes.number
 });
 
 _defineProperty(Dialog, "defaultProps", {
