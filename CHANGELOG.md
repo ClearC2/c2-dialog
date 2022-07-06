@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/ClearC2/c2-dialog/compare/v2.3.2...v2.3.3) (2022-07-06)
+
+
+### Bug Fixes
+
+* **package.json:** dependency ([c1f3f67](https://github.com/ClearC2/c2-dialog/commit/c1f3f67))
+
 ## [2.3.2](https://github.com/ClearC2/c2-dialog/compare/v2.3.1...v2.3.2) (2021-05-07)
 
 
