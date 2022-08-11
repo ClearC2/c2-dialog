@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: clearc2/node-8.12.0-browsers:0.0.1
+      - image: cimg/node:16.16.0-browsers
     steps:
       - checkout
       - restore_cache:
